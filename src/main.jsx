@@ -12,6 +12,9 @@ import {
 } from "react-router";
 
 import AuthProvider from './AuthProvider';
+import Oders from './Oders';
+import Profile from './Profile';
+import PrivetRoute from './PrivetRoute';
 
 
 
@@ -29,6 +32,16 @@ const router = createBrowserRouter([
     ,
     {path:'/login' ,Component: Login},
     {path:'/register' ,Component: Register},
+    {path:'/oders' ,
+      element: 
+      <PrivetRoute>
+        <Oders></Oders>
+        </PrivetRoute>
+    },
+    {path:'/profile' , element:
+    <PrivetRoute>
+      <Profile></Profile>
+    </PrivetRoute>},
    
     
    ]
