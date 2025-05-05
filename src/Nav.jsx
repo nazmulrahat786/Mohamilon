@@ -25,6 +25,24 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink className="mr-2 btn text-blue-600 " to="/db">
+          DashBoard
+        </NavLink>
+      </li>
+    
+      {
+        user ? <><li>
+        <NavLink className="mr-2 btn text-blue-600 " to="/profile">
+          Profile
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="mr-2 btn text-blue-600 " to="/oders">
+        Oders
+        </NavLink>
+      </li>
+        </> : <>
+        <li>
         <NavLink className="mr-2 btn text-blue-600 " to="/login">
           Login
         </NavLink>
@@ -34,21 +52,9 @@ const Nav = () => {
           Register
         </NavLink>
       </li>
-  
-      {user && (
-        <>
-          <li>
-            <NavLink className="mr-2 btn text-blue-600 " to="/profile">
-              Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="mr-2 btn text-blue-600 " to="/oders">
-            Oders
-            </NavLink>
-          </li>
         </>
-      )}
+      }
+  
     </>
   );
 

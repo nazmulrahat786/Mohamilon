@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { use } from 'react';
+import { AuthContext } from './AuthContext';
 
 const Profile = () => {
+    const {user} = use(AuthContext)
     return (
-        <div>
-            <h1>Profile</h1>
+        <div className='max-w-sm mx-auto'>
+            <p>{user.email}</p>
         </div>
     );
 };

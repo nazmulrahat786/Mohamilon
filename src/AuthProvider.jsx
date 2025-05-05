@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from './firebase.init';
 
 const AuthProvider = ({children}) => {
-
+const [loading ,setLoging] = useState(true)
+const googleProvider = new GoogleAuthProvider()
 
     const [user,setUser]= useState(null)
 
     const creatUser = (email,password)=>{
+        setLoging(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
     const signInUser = (email,password) =>{
+        setLoging(true)
         return signInWithEmailAndPassword(auth,email,password)
+    }
+    const signinGoogle = () =>{
+        setLoging(true)
+        return signInWithPopup(auth,googleProvider)
     }
 
     const signOutUser = ()=>{
+        setLoging(true)
         return signOut(auth)
     }
 
@@ -34,6 +42,7 @@ useEffect(()=>{
         if(currentUser){
             // console.log('hase user',currentUser);
             setUser(currentUser)
+            setLoging(false)
         }
         })
         return ()=>{
@@ -49,9 +58,11 @@ useEffect(()=>{
 
 
     const userInfo ={
+        loading,
         user,
        creatUser,
        signInUser,
+       signinGoogle,
        signOutUser
     }
     return (

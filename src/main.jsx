@@ -15,6 +15,7 @@ import AuthProvider from './AuthProvider';
 import Oders from './Oders';
 import Profile from './Profile';
 import PrivetRoute from './PrivetRoute';
+import DB from './DB';
 
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     {path:'/profile' , element:
     <PrivetRoute>
       <Profile></Profile>
+    </PrivetRoute>},
+    {path:'/db' , element:
+    <PrivetRoute>
+      <DB></DB>
     </PrivetRoute>},
    
     

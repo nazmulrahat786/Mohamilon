@@ -1,12 +1,18 @@
 import React, { use } from 'react';
 import { AuthContext } from './AuthContext';
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 
 const PrivetRoute = ({children}) => {
-    const {user} = use(AuthContext)
+    const location = useLocation()
+
+    const {user,loading} = use(AuthContext)
     if(!user){
-        return <Navigate to="/login"></Navigate>
+        return <Navigate state={location?.pathname} to="/login"></Navigate>
     }
+    if(loading){
+       return  <span className="loading loading-spinner loading-xl"></span>
+    }
+
     return children;
 
 };
